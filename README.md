@@ -38,7 +38,38 @@ cover:
     optimistic: false
 ```
 
-# What Next?
+# Запускать при загрузке системы
 
-- Get information from the Shade (battery, state, etc..), currently it's just sending command, for open and close.
-- ESP32 version - Would prefer to run this in a ESP32 instead of a Raspberry PI
+Создайте файл
+```sh
+sudo nano /lib/systemd/system/rollershade.service
+```
+
+
+Добавьте в этот файл следующие строки: 
+```service
+[Unit] 
+Description=Rollshade 
+After=multi-user.target
+ 
+[Service] 
+Type=simple 
+ExecStart=python3 /home/alex/blinds/zemirollshade/rollshade.py 
+Restart=on-failure
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=roll
+ 
+[Install]
+WantedBy=multi-user.target
+```
+Теперь нам нужно активировать сервис:
+
+```sh
+sudo chmod 644 /lib/systemd/system/rollershade.service
+chmod +x /home/pi/zemirollshade/rollshade.py
+sudo systemctl daemon-reload
+sudo systemctl enable rollershade.service
+sudo systemctl start rollershade.service
+```
