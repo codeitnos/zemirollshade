@@ -47,7 +47,7 @@ sudo nano /lib/systemd/system/rollershade.service
 
 
 Добавьте в этот файл следующие строки: 
-```service
+```yaml
 [Unit] 
 Description=Rollshade 
 After=multi-user.target
