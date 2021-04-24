@@ -27,13 +27,18 @@ Just add a MQTT cover:
 cover:
   - platform: mqtt
     name: "Blinds Bedroom"
-    state_topic: "blinds/00:00:00:00:00:00/status"
-    command_topic: "blinds/00:00:00:00:00:00"
+    state_topic: "blinds/02:86:FA:AF:DD:9C/status"
+    command_topic: "blinds/02:86:FA:AF:DD:9C"
+    position_topic: "blinds/02:86:FA:AF:DD:9C/position"
+    set_position_topic: "blinds/02:86:FA:AF:DD:9C/set_position"   
+    position_open: 0
+    position_closed: 100    
     qos: 0
     state_open: "on"
     state_closed: "off"
     payload_open: "open"
     payload_close: "close"
+    payload_stop: "stop"
     retain: false
     optimistic: false
 ```
